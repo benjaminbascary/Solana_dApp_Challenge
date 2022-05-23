@@ -1,0 +1,13 @@
+.transfer-sol-container {
+    display: flex;
+    height: 100vh;
+    background: rgb(190, 255, 173);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.history {
+    height: 100vh;
+    background: red;
+}

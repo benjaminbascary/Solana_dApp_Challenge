@@ -1,0 +1,19 @@
+.airdrop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgb(255, 240, 163);
+}
+
+.airdrop-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.public-key-input {
+    width: 100vh;
+}
