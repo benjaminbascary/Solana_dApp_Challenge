@@ -13,5 +13,3 @@
 # it won't let me show the history by more than 2 seconds.
 
 # The app needs a Dependency Injection Container for better code maintenance and clean structure.
-
-
