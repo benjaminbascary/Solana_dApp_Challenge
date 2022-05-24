@@ -1,10 +1,17 @@
 .airdrop-container {
+    font-family: Karla;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: rgb(255, 240, 163);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(230,245,222,1) 0%, rgba(251,250,244,1) 100%);
+}
+
+.airdrop-title {
+    margin: 0px 0px 10px 0px;
+    font-size: 10vh;
+    color: #4fabbd;
 }
 
 .airdrop-form-container {
@@ -12,8 +19,84 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 3vh;
+}
+
+.airdrop-alert-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 0px 0px 20px 0px;
 }
 
 .public-key-input {
     width: 100vh;
+    height: 5vh;
+    font-family: Karla;
+    font-size: 3vh;
+    border: none;
+    background-color: #bdb1ff;
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #fbfaf4;
+    transition: 0.7s;
+}
+
+.public-key-input:hover{
+    border: 1px solid #b3ff00;
+    transition: 0.7s;
+}
+
+.airdrop-lamports-input {
+    width: 100vh;
+    height: 5vh;
+    font-family: Karla;
+    font-size: 3vh;
+    border: none;
+    background-color: #bdb1ff;
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #fbfaf4;
+    transition: 0.7s;
+}
+
+.airdrop-lamports-input:hover {
+    border: 1px solid #b3ff00;
+    transition: 0.7s;
+}
+
+.request-airdrop-button {
+    margin: 12px 0px 20px 0px;
+    height: 8vh;
+    border-radius: 10px;
+    background: #4fabbd;
+    border: none;
+    width: 25vh;
+    font-family: Karla;
+    color: aliceblue;
+    font-size: 2.5vh;
+    cursor: pointer;
+    border: 1px solid #fbfaf4;
+    transition: 0.7s;
+}
+
+.request-airdrop-button:hover {
+    border: 1px solid #b3ff00;
+    transition: 0.7s;
+}
+
+.airdrop-transaction-container {
+    padding: 2px 10px 2px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(193, 193, 193);
+    border-radius: 3px;
 }

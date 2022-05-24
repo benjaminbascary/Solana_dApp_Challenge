@@ -1,0 +1,7 @@
+.navigation-bar-container {
+	background: red;
+	position: fixed;
+  top: 0;
+  width: 100%;
+	right: 0;
+}

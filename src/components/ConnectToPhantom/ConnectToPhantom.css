@@ -4,9 +4,85 @@ body {
 
 .connection-container {
     height: 100vh;
-    background: rgb(174, 224, 252);
+    background: #f8f700;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.connect-disconnect-buttons-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.welcome-title {
+    color: #70c2a7;
+    font-family: Karla;
+    font-size: 10vh;
+    transition: 0.5s;
+}
+
+.welcome-title:hover {
+    color: #70c2a7;
+    transition: 0.5s;
+}
+
+.connect-disconnect-buttons-container > button {
+    cursor: pointer;
+    padding: 20px ;
+    margin: 20px;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 20px;
+    font-family: Karla;
+    font-size: 3vh;
+    transition: 0.5s;
+}
+
+.connect-disconnect-buttons-container > button:hover {
+    background-color: #70c2a7;
+    color: rgb(59, 59, 59);
+    transition: 0.5s;
+}
+
+.phantom-notinstalled-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #70c2a7;
+    font-family: Karla;
+    transition: 0.5s;
+}
+
+.phantom-notinstalled-container:hover {
+    color: #f9fec8;
+    transition: 0.5s;
+}
+
+.phantom-notinstalled-container > a {
+    border-radius: 20px;
+    border: 1px solid #70c2a7;
+    padding: 20px;
+    color: #70c2a7;
+    cursor: pointer;
+}
+
+.phantom-notinstalled-container > a:hover {
+    color: #f9fec8;
+    transition: 0.5s;
+}
+
+.connection-pubkey-container{
+    color: #70c2a7;
+}
+
+.connection-pubkey-container {
+    border: solid 1px #70c2a7;
+    padding: 20px;
+    color: black;
+    font-family: Karla;
+    font-size: 20px;
+    border-radius: 10px;
 }

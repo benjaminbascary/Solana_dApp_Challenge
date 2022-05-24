@@ -1,22 +1,13 @@
-import { clusterApiUrl, ConfirmedSignatureInfo, Connection, PublicKey, RpcResponseAndContext, SystemProgram, Transaction } from '@solana/web3.js';
+import { clusterApiUrl, Connection, PublicKey, RpcResponseAndContext, SystemProgram, Transaction } from '@solana/web3.js';
 import React, { useEffect, useRef, useState } from 'react';
-import { PhantomProvider } from '../ConnectToPhantom/ConnectToPhantom';
-import History from '../History/History';
+import { network, defaultDest, minimunSol, solDefaultExchange } from '../../utils/devUtils';
 import "./TransferSol.css";
 
-interface ITransferSolProps {
+/*interface ITransferSolProps {
 	provider: PhantomProvider;
-};
-
-const network = "devnet";
-
-
-const defaultDest = "A3gWSs3vB6T1hwbEP5ENJgnydBJzH3TL1QjPWASYkDbK";
-
-
+};*/
 
 export default function TransferSol(props: any) {
-	console.log(props.provider.publicKey.toString());
 
 	const connection = useRef(new Connection(clusterApiUrl(network)));
 
@@ -26,9 +17,7 @@ export default function TransferSol(props: any) {
 	const [slot, setSlot] = useState<number | null>(null);
 	const [myBalance, setMyBalance] = useState(0);
 	const [rxBalance, setRxBalance] = useState(0);
-	const [transactionsData, setTransactionsData] = useState<[]>()
-	const [showHistory, setShowHistory] = useState(false);
-	const transactions: any = [];
+	const [sol, setSol] = useState<any>()
 
 	useEffect(() => {
 		connection.current.getBalance(props.provider.publicKey).then(setMyBalance);
@@ -38,45 +27,21 @@ export default function TransferSol(props: any) {
 		connection.current.getBalance(new PublicKey(destAddr)).then(setRxBalance);
 	}, [destAddr]);
 
-	/*const init = async () => {
-		let transac = await connection.current.getConfirmedSignaturesForAddress2(
-			props.provider.publicKey,
-			{
-				limit: 10,
-			}
-		);
-		let info = await connection.current.getAccountInfo(props.provider.publicKey);
-		//transac.map(each => transactions.push(each))
-		transac.map(async each => transactions.push(await connection.current.getTransaction(each.signature.toString())));
-		//transac.map(async each => console.log(await connection.current.getTransaction(each.signature.toString())));
-		console.log(transactions);
-		
-		console.log("This is the transactionsData");
-		console.log(transactions);
-		setTransactionsData(transactions);
-		setShowHistory(true);
-		
-		
-		
-	}*/
-
-
-
 	const handleChangeAddr = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setDestAddr(event.target.value);
 	};
 
 	const handleChangeLamp = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setLamports(parseInt(event.target.value));
+		setSol(parseInt(event.target.value) / solDefaultExchange)
 	};
 
 	const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
 		let transaction = new Transaction({
 			feePayer: props.provider.publicKey,
-			recentBlockhash: (await connection.current.getLatestBlockhash()).blockhash // getRecentBlockhash is now deprecated.
+			recentBlockhash: (await connection.current.getLatestBlockhash()).blockhash 
 		});
 		
-
 		transaction.add(
 			SystemProgram.transfer({
 				fromPubkey: props.provider.publicKey,
@@ -90,39 +55,32 @@ export default function TransferSol(props: any) {
 
 		connection.current.sendRawTransaction(transaction.serialize())
 		.then(id => {
-			console.log(`Transaction ID: ${id}`);
 			setTxid(id);
 			connection.current.confirmTransaction(id)
 			.then((confirmation: RpcResponseAndContext<any>) => {
 				setSlot(confirmation.context.slot);
 				connection.current.getBalance(props.provider.publicKey).then(setMyBalance);
 				connection.current.getBalance(new PublicKey(destAddr)).then(setRxBalance);
-				//init();
 			});
 
 		})
 		.catch(console.error);
 	};
 
-
-
   return (
-		<React.Fragment>
+		
     <div className='transfer-sol-container'>
-      <label>Destination address:</label>
-			<input type="text" value={destAddr} onChange={handleChangeAddr}></input>
-			<label>Lamports:</label>
-			<input type="number" value={lamports} onChange={handleChangeLamp}></input>
-			<button onClick={handleSubmit}>Send lamports</button>
-			<hr></hr>
-			<p>Balance: {myBalance}</p>
-			<p>Receipt Balance: {rxBalance}</p>
-			<hr></hr>
-			{ txid ? <p>Transaction id: <strong>{txid}</strong></p> : null}
-			{ slot ? <p>Confirmation slot: <strong>{slot}</strong></p> : "Waiting confirmation slot..."}
+		<h1 className='transfer-title'>Transfer</h1>
+		<label>Enter destination address:</label>
+		<input className="transfer-address-input"type="text" value={destAddr} disabled={true} onChange={handleChangeAddr}></input>
+		<label>Lamports:</label>
+		<input className="transfer-address-input" type="number" value={lamports} onChange={handleChangeLamp}></input>
+		{sol > minimunSol ? <p>{sol} SOL</p> : null}
+		<button className="transfer-button" onClick={handleSubmit}>Send lamports</button>
+		<p>Balance: {myBalance}</p>
+		<p>Receipt Balance: {rxBalance}</p>
+		{ txid ? <p>Transaction id: <strong>{txid}</strong></p> : null}
+		{ slot ? <p>Confirmation slot: <strong>{slot}</strong></p> : "Waiting confirmation slot..."}
     </div>
-		{/*<History transactions={transactionsData}/>*/}
-		<History connection={connection} provider={props.provider}/>
-		</React.Fragment>
   )
 }

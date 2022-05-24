@@ -1,10 +1,9 @@
 import React from 'react'
-import {FC, useState, useEffect} from "react";
-import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
-import "./ConnectToPhantom.css";
+import { useState, useEffect} from "react";
+import { PublicKey } from "@solana/web3.js";
 import AirDrop from '../AirDrop/AirDrop';
-import History from "../History/History"
 import TransferSol from '../TransferSol/TransferSol';
+import "./ConnectToPhantom.css";
 
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
 
@@ -21,7 +20,7 @@ export interface PhantomProvider {
 
 type WindowWithSolana = Window & {
     solana?: PhantomProvider;
-}
+};
 
 export default function ConnectToPhantom() {
 
@@ -43,12 +42,10 @@ export default function ConnectToPhantom() {
 
 	useEffect( () => {
 		provider?.on("connect", (publickKey: PublicKey) => {
-			console.log(publickKey);
 			setConnected(true)
 			setPubKey(publickKey)
 		});
 		provider?.on("disconnect", () => {
-			console.log("Disconnected");
 			setConnected(false);
 			setPubKey(null);
 		});
@@ -56,42 +53,45 @@ export default function ConnectToPhantom() {
 	}, [provider]);
 
 	const connectHandler : React.MouseEventHandler<HTMLButtonElement> = (event) => {
-		console.log("Connection attempt with button");
 		provider?.connect()
 		.catch((err) => {console.error("Connect Error" + err);     });
 	};
 
 	const disconnectHandler : React.MouseEventHandler<HTMLButtonElement> = (event) => {
-		console.log("Disconnecting...");
 		provider?.disconnect()
 		.catch((err) => {console.error("disconnect error" + err); });
-	}
+	};
 
   return (
 		<React.Fragment>
     <div className='connection-container'>
-			{	walletAvail ?
+		<div className='welcome-container'>
+			<h1 className='welcome-title'>Welcome</h1>
+		</div>
+			{	
+				walletAvail ?
+				(
 				<div className='connect-disconnect-buttons-container'>
 					<button disabled={connected} onClick={connectHandler}>Connect to Phantom</button>
 					<button disabled={!connected} onClick={disconnectHandler}>Disconnect from Phantom</button>
-					{ connected ? <p>Your Pub Key is: {pubKey?.toBase58()}</p> : null}
+					
 				</div>
-				:
+  				) : (
 				<div className='phantom-notinstalled-container'>
 					<p>Oops! Looks like Phantom is not avaiable on your browser. You can go get it in the link below</p>
 					<p>After you install the Phantom Wallet come back to sign-in into your account.</p>
 					<a href='https://phantom.app/'>Get Phantom Wallet Extension</a>
 				</div>
+				)
 			}
-			
+			{ connected ? <p className='connection-pubkey-container'>Your public key: {pubKey?.toBase58()}</p> : null}	
 		</div>
 		<div>
 			{
 				connected && 
 					<React.Fragment>
 						<AirDrop pubkey={pubKey} />
-						<TransferSol provider={provider} />
-						
+						<TransferSol provider={provider} />						
 					</React.Fragment>
 			}
 		</div>

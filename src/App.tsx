@@ -1,19 +1,11 @@
-import React from 'react';
 import ConnectToPhantom from './components/ConnectToPhantom/ConnectToPhantom';
-
-
-
+import "./App.css";
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
-  
-  React.useEffect(() => {
-    window.process = {
-      ...window.process,
-    };
-  }, []);
-  console.log(process)
   return (
     <div className="app-container">
+      <NavBar />
       <ConnectToPhantom />
     </div>
   );

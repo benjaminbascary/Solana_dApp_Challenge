@@ -1,13 +1,60 @@
 .transfer-sol-container {
+    color: aliceblue;
+    font-family: Karla;
     display: flex;
     height: 100vh;
-    background: rgb(190, 255, 173);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,123,68,1) 0%, rgba(255,73,80,1) 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.history {
-    height: 100vh;
-    background: red;
+.transfer-title {
+    font-size: 7vh;
+}
+
+.transfer-sol-container > label {
+    font-size: 3.4vh;
+    
+}
+
+.transfer-address-input {
+    width: 100vh;
+    height: 5vh;
+    font-family: Karla;
+    font-size: 3vh;
+    border: none;
+    background-color: #f2ff62;
+    color: black;
+    border-radius: 3px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid rgba(255,73,80,1);
+    transition: 0.7s;
+}
+
+.transfer-address-input:hover {
+    border: 1px solid #f2ff62;
+    transition: 0.7s;
+}
+
+.transfer-button {
+    margin: 12px 0px 20px 0px;
+    height: 8vh;
+    border-radius: 10px;
+    background: #f2ff62;
+    border: none;
+    width: 25vh;
+    font-family: Karla;
+    color: black;
+    font-size: 3vh;
+    cursor: pointer;
+    border: 1px solid #fbfaf4;
+    transition: 0.7s;
+}
+
+.transfer-button:hover {
+    background-color: rgba(255,73,80,1);
+    color: aliceblue;
+    border: 1px solid #b3ff00;
+    transition: 0.7s;
 }
