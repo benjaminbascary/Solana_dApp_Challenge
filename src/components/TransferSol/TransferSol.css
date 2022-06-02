@@ -58,3 +58,10 @@
     border: 1px solid #b3ff00;
     transition: 0.7s;
 }
+
+@media screen and (max-width: 750px) {
+    .transfer-address-input {
+        width: 60vh;
+        font-size: 2.5vh;
+    }
+}
