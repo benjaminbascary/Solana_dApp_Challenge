@@ -5,6 +5,8 @@
 
 ### This is a Junior Challenge for Fluid Chains:
 
+### Currently working on the History component... Having difficulties with external effects and the solana ecosystem returning all the transactions to be shown.
+
 #### Required tech for this project: React and web3/solana.js library. The endpoint is provided by the solana network itself.
 #### If you want more info: https://solana.com/es/developers
 
