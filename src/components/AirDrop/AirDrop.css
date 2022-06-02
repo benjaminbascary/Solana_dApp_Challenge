@@ -100,3 +100,34 @@
     border: 1px solid rgb(193, 193, 193);
     border-radius: 3px;
 }
+
+@media screen and (max-width: 750px) {
+    .airdrop-alert-container {
+        display: none;
+    }
+
+    .public-key-input {
+        width: 60vh;
+        height: 5vh;
+        font-family: Karla;
+        font-size: 2.5vh;
+    }
+
+    .airdrop-lamports-input {
+        width: 60vh;
+        height: 5vh;
+    }
+
+    .request-airdrop-button {
+        margin: 12px 0px 20px 0px;
+        height: 8vh;
+        border-radius: 10px;
+        background: #4fabbd;
+        border: none;
+        width: 60vh;
+    }
+
+    .airdrop-transaction-container {
+        width: 60vh;
+    }
+  }
