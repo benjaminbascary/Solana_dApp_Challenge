@@ -86,3 +86,17 @@ body {
     font-size: 20px;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 700px) {
+    .connect-disconnect-buttons-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .welcome-title {
+        color: #70c2a7;
+        font-family: Karla;
+        font-size: 13vh;
+        transition: 0.5s;
+    }
+  }
